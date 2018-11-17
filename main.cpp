@@ -2,10 +2,8 @@
 #include <cstdlib>
 
 
-
-
-
 using namespace std;
+
 //This Creates a struct to hold data and pointer to the next node
 struct Node{
     int data;
@@ -44,7 +42,6 @@ void pop(){
 
 }
 
-
 //Queue
 void dequeue(){
 
@@ -63,7 +60,6 @@ void dequeue(){
     cout<<endl;
 
 }
-
 
 //LINKED LIST FUNCTIONs
 void printLinkedList(){
@@ -124,8 +120,6 @@ while(n!=-1){
     cout<<"Enter ";
     cin>>n;             //Input data
 }
-
-
 }
 
 void insertAt(){
@@ -253,6 +247,45 @@ void deleteLinkedList(){
 
 }
 
+
+//Initialize universal array
+int insertedData=0;        //this keep the count of how much data inserted
+int array[50];
+
+//to insert in array
+void insertInArray(){
+    int n,i=insertedData;
+    cout<<"Enter -1 to stop adding more data"<<endl;
+    cout<<endl;
+    while(n!=-1){
+        cout<<"Enter Data  "<<i<<" location : ";
+        cin>>n;
+        if(n==-1){              //If user press -1, this will not be stored in array, but it will increase the count for insertedData
+            insertedData++;
+            break;
+        }
+        array[i]=n;
+        insertedData=i;
+        i++;
+    }
+}
+
+//Display all content of array
+void displayArray(){
+    for(int i=0;i<insertedData;i++){
+        cout<<array[i]<<" ";
+    }
+    cout<<endl;
+}
+
+//Delete all content of array, make all equal to zero
+void deleteArrayContent(){
+    for(int i=0;i<=insertedData;i++){
+        array[i]=0;
+    }
+    insertedData=0;
+}
+
 //BINARY SEARCH TREE
  struct node{
     int data;
@@ -366,7 +399,7 @@ void clearScreen(){
     system("cls");
 }
 
-//To Display Main Menu
+//To Display Menus
 void mainMenu(){
 
     cout<<endl;
@@ -418,7 +451,12 @@ void linkListMenu(){
 }
 
 void arrayMenu(){
-
+    cout<<endl;
+    cout<<"\t\t\t"<<"**********ARRAY***********"<<endl;
+    cout<<"\t\t\t"<<" 1 : Insert"<<endl;
+    cout<<"\t\t\t"<<" 2 : Display"<<endl;
+    cout<<"\t\t\t"<<"-1 : Exit"<<endl;
+    cout<<endl;
 }
 
 void BSTMenu(){
@@ -436,6 +474,7 @@ int main()
 {
     int option,option1;
     option=0;
+
     while(option!=-1){
     mainMenu();
     cout<<"\t\t\t"<<"Choice Option: ";
@@ -462,6 +501,7 @@ int main()
                 break;
             }
         }
+        break;
     case 2 :
         queueMenu();
         option1=0;
@@ -485,6 +525,7 @@ int main()
 
             }
         }
+        break;
     case 3:
         linkListMenu();
          option1=0;
@@ -534,8 +575,31 @@ int main()
                 break;
             }
         }
+        break;
     case 4:
-           break;
+        arrayMenu();
+        option1=0;
+        while(option1!=-1)
+        {
+            cout<<"\t\t\t"<<"Choice Option: ";
+            cin>>option1;
+            cout<<endl;
+            switch(option1)
+            {
+            case 1:
+                insertInArray();
+                break;
+            case 2:
+                displayArray();
+                break;
+            case (-1):
+                //deleteArrayContent();
+                clearScreen();
+                deleteLinkedList();
+                break;
+            }
+        }
+        break;
     case 5:
         BSTMenu();
         option1=0;
